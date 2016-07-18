@@ -23,7 +23,7 @@
     DEALINGS IN THE SOFTWARE.
 */
 
-#include <Eigen/Eigenvalues> 
+#include "Eigen/Eigenvalues" 
 #include <limits>
 #include <Dense>
 #include <stdio.h>
@@ -18261,9 +18261,15 @@ void BROCCOLI_LIB::ClusterizeOpenCLPermutation(float& MAX_CLUSTER, int DATA_W, i
 	clEnqueueReadBuffer(commandQueue, d_Largest_Cluster, CL_TRUE, 0, sizeof(unsigned int), &Largest_Cluster, 0, NULL, NULL);
 	clFinish(commandQueue);
 
+	//attempt at grabbing cluster sizes
+	unsigned int Cluster_Sizes[10000];
+	clEnqueueReadBuffer(commandQueue, d_Cluster_Sizes, CL_TRUE, 0, sizeof(unsigned int)*10000, &Cluster_Sizes, 0, NULL, NULL);
+	clFinish(commandQueue);
+
 	if (INFERENCE_MODE == CLUSTER_EXTENT)
 	{
 		MAX_CLUSTER = (float)Largest_Cluster;
+		MAX_CLUSTER = (float)Cluster_Sizes[100];
 	}
 	else if (INFERENCE_MODE == CLUSTER_MASS)
 	{

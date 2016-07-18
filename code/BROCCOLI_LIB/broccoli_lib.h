@@ -28,7 +28,7 @@
 
 #include "broccoli_constants.h"
 
-#include <opencl.h>
+#include </usr/include/CL/opencl.h>
 #include <string>
 #include <vector>
 #include <Dense>

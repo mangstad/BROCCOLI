@@ -18,7 +18,7 @@
 
 #include "mex.h"
 #include "help_functions.cpp"
-#include "broccoli_lib.h"
+#include "/home/slab/users/mangstad/repos/BROCCOLI/code/BROCCOLI_LIB/broccoli_lib.h"
 
 
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
@@ -292,10 +292,10 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
         BROCCOLI.SetContrasts(h_Contrasts);
         BROCCOLI.SetGLMScalars(h_ctxtxc_GLM);
         BROCCOLI.SetPermutationMatrix(h_Permutation_Matrix);        
-        BROCCOLI.SetOutputBetaVolumes(h_Beta_Volumes);        
-        BROCCOLI.SetOutputResiduals(h_Residuals);        
+        //BROCCOLI.SetOutputBetaVolumes(h_Beta_Volumes);        
+        //BROCCOLI.SetOutputResiduals(h_Residuals);        
         BROCCOLI.SetOutputResidualVariances(h_Residual_Variances);        
-        BROCCOLI.SetOutputStatisticalMaps(h_Statistical_Maps);        
+        //BROCCOLI.SetOutputStatisticalMaps(h_Statistical_Maps);        
         BROCCOLI.SetOutputClusterIndices(h_Cluster_Indices);
         BROCCOLI.SetOutputPermutationDistribution(h_Permutation_Distribution);
         BROCCOLI.SetOutputPermutedFirstLevelResults(h_Permuted_First_Level_Results);       
@@ -326,7 +326,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
      
     // Print build info
-    mexPrintf("Build info \n \n %s \n", BROCCOLI.GetOpenCLBuildInfoChar());     
+    //mexPrintf("Build info \n \n %s \n", BROCCOLI.GetOpenCLBuildInfoChar());     
           
     // Unpack results to Matlab
     //unpack_float2double_volumes(h_Permuted_First_Level_Results_double, h_Permuted_First_Level_Results, MNI_DATA_W, MNI_DATA_H, MNI_DATA_D, NUMBER_OF_SUBJECTS);  

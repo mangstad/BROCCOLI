@@ -1,4 +1,4 @@
-#include "broccoli_lib.h"
+#include "/home/slab/users/mangstad/repos/BROCCOLI/code/BROCCOLI_LIB/broccoli_lib.h"
 
 
 void pack_double2float(float* output_float, double* input_double, int SIZE)

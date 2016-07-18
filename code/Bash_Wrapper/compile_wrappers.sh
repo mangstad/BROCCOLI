@@ -8,12 +8,13 @@ INTEL=1
 NVIDIA=2
 #OPENCL_PACKAGE=$AMD
 OPENCL_PACKAGE=$INTEL
-#OPENCL_PACKAGE=$NVIDIA
+OPENCL_PACKAGE=$NVIDIA
 
 # Set compilation mode to use
 RELEASE=0
 DEBUG=1
 COMPILATION=$RELEASE
+COMPILATION=$DEBUG
 
 # Fist run make for Nifti library
 #cd nifticlib-2.0.0
@@ -36,6 +37,8 @@ elif [ "$OPENCL_PACKAGE" -eq "$NVIDIA" ]; then
     OPENCL_HEADER_DIRECTORY2=
     #OPENCL_LIBRARY_DIRECTORY=/usr/lib64
 	OPENCL_LIBRARY_DIRECTORY=/usr/local/cuda-6.5/lib64
+	OPENCL_LIBRARY_DIRECTORY=/usr/lib/nvidia-304/
+	OPENCL_HEADER_DIRECTORY1=/usr/include/CL
 else
     echo "Unknown OpenCL package!"
 fi

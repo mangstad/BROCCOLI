@@ -1,23 +1,28 @@
 close all
 clc
 
-if ispc
+if isunix
 
     % Change to fit your computer
     OPENCL_INCLUDE_DIRECTORY1='C:/Program'' Files''/NVIDIA'' GPU Computing Toolkit''/CUDA/v5.0/include';
     OPENCL_INCLUDE_DIRECTORY2='C:/Program'' Files''/NVIDIA'' GPU Computing Toolkit''/CUDA/v5.0/include/CL';
     OPENCL_LIBRARY_DIRECTORY='C:/Program'' Files''/NVIDIA'' GPU Computing Toolkit''/CUDA/v5.0/lib/x64';
 
+	OPENCL_INCLUDE_DIRECTORY1='/usr/include/CL';
+    OPENCL_INCLUDE_DIRECTORY2='';
+	OPENCL_LIBRARY_DIRECTORY='/usr/lib/nvidia-304/'
+    
     % Get current directory
     BROCCOLI_DIRECTORY=pwd;
     % Remove '\code\Matlab_Wrapper'
     BROCCOLI_DIRECTORY=BROCCOLI_DIRECTORY(1:end-20);
         
-    BROCCOLI_LIBRARY_DIRECTORY=[BROCCOLI_DIRECTORY '\code\BROCCOLI_LIB\Compiled\Windows\Release'];
-    BROCCOLI_HEADER_DIRECTORY=[BROCCOLI_DIRECTORY '\code\BROCCOLI_LIB'];
-    EIGEN_DIRECTORY=[BROCCOLI_DIRECTORY '\code\BROCCOLI_LIB\Eigen'];
-    NIFTI_DIRECTORY=[BROCCOLI_DIRECTORY '\code\Bash_Wrapper\nifticlib-2.0.0\niftilib'];
-    ZNZ_DIRECTORY=[BROCCOLI_DIRECTORY '\code\Bash_Wrapper\nifticlib-2.0.0\znzlib'];
+    BROCCOLI_LIBRARY_DIRECTORY=[BROCCOLI_DIRECTORY '/code/BROCCOLI_LIB/Compiled\Windows\Release'];
+    BROCCOLI_LIBRARY_DIRECTORY=[BROCCOLI_DIRECTORY '/compiled/BROCCOLI_LIB/Linux/Debug'];
+    BROCCOLI_HEADER_DIRECTORY=[BROCCOLI_DIRECTORY '/code/BROCCOLI_LIB'];
+    EIGEN_DIRECTORY=[BROCCOLI_DIRECTORY '/code/BROCCOLI_LIB/Eigen'];
+    NIFTI_DIRECTORY=[BROCCOLI_DIRECTORY '/code/Bash_Wrapper/nifticlib-2.0.0/niftilib'];
+    ZNZ_DIRECTORY=[BROCCOLI_DIRECTORY '/code/Bash_Wrapper/nifticlib-2.0.0/znzlib'];
 
     error = 0;
     
@@ -68,7 +73,7 @@ if ispc
 
     try
         %disp('Compiling RandomiseGroupLevelMex.cpp')
-        cmd = sprintf('mex GLMTTest_SecondLevel_Permutation.cpp -lOpenCL -lBROCCOLI_LIB -I%s -I%s -L%s -L%s -I%s -I%s  -I%s -I%s',OPENCL_INCLUDE_DIRECTORY1, OPENCL_INCLUDE_DIRECTORY2, OPENCL_LIBRARY_DIRECTORY, BROCCOLI_LIBRARY_DIRECTORY, BROCCOLI_HEADER_DIRECTORY, NIFTI_DIRECTORY, ZNZ_DIRECTORY, EIGEN_DIRECTORY);
+        cmd = sprintf('mex GLMTTest_SecondLevel_Permutation.cpp -I%s -I%s -L%s -L%s -I%s -I%s  -I%s -I%s -lOpenCL -lBROCCOLI_LIB ',OPENCL_INCLUDE_DIRECTORY1, OPENCL_INCLUDE_DIRECTORY2, OPENCL_LIBRARY_DIRECTORY, BROCCOLI_LIBRARY_DIRECTORY, BROCCOLI_HEADER_DIRECTORY, NIFTI_DIRECTORY, ZNZ_DIRECTORY, EIGEN_DIRECTORY);
         eval(cmd)
     catch
         error = 1;
